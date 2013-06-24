@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "OAuth",
+  "version": "0.1",
+  "minimum_chrome_version": "23",
+  "icons": {
+    "128": "oauth.png"
+  },
+  "app": {
+    "background": {
+      "scripts": ["main.js"]
+    }
+  },
+  "permissions": ["https://ads-api.twitter.com/", "storage"]
+}

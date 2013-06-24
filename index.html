@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Twitter API</title>
+    <link href="styles/main.css" rel="stylesheet">
+</head>
+<body>
+    <div id="content-main">
+    <fieldset>
+        <legend>OAuth settings</legend>
+        <div class="fieldset-wrapper">
+            <div class="form-item" id="edit-consumer-key-wrapper">
+                <label for="consumer_key">Consumer key: <span class="form-required" title="This field is required.">*</span></label>
+                <input type="text" maxlength="128" name="consumer_key" id="consumer_key" size="60" value="" class="form-text required">
+            </div>
+            <div class="form-item" id="edit-consumer-secret-wrapper">
+                <label for="consumer_secret">Consumer secret: <span class="form-required" title="This field is required.">*</span></label>
+                <input type="text" maxlength="128" name="consumer_secret" id="consumer_secret" size="60" value="" class="form-text required">
+            </div>
+            <div class="form-item" id="edit-access-token-wrapper">
+                <label for="access_token">Access token: <span class="form-required" title="This field is required.">*</span></label>
+                <input type="text" maxlength="128" name="access_token" id="access_token" size="60" value="" class="form-text required">
+            </div>
+            <div class="form-item" id="edit-access-token-secret-wrapper">
+                <label for="access_token_secret">Access token secret: <span class="form-required" title="This field is required.">*</span></label>
+                <input type="text" maxlength="128" name="access_token_secret" id="access_token_secret" size="60" value="" class="form-text required">
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Request settings</legend>
+        <div class="fieldset-wrapper">
+            <div class="form-item">
+                <label>Request type: <span class="form-required" title="This field is required.">*</span></label>
+                <div class="form-radios">
+                    <label class="option" for="edit-request-type-0">
+                        <input type="radio" id="edit-request-type-0" name="request_type" value="get" checked="checked" style="width:20px;"/> GET</label>
+
+                    <label class="option" for="edit-request-type-1">
+                        <input type="radio" id="edit-request-type-1" name="request_type" value="post" style="width:20px;"/> POST</label>
+
+                    <label class="option" for="edit-request-type-2">
+                        <input type="radio" id="edit-request-type-2" name="request_type" value="delete" style="width:20px;"/> DELETE</label>
+
+                    <label class="option" for="edit-request-type-3">
+                        <input type="radio" id="edit-request-type-3" name="request_type" value="put" style="width:20px;"/> PUT</label>
+
+                    <label class="option" for="edit-request-type-4">
+                        <input type="radio" id="edit-request-type-4" name="request_type" value="head" style="width:20px;"/> HEAD</label>
+                </div>
+            </div>
+            <div class="form-item" id="edit-request-uri-wrapper">
+                <label for="request_uri">Request URI: <span class="form-required" title="This field is required.">*</span></label>
+                <input type="text" maxlength="128" name="request_uri" id="request_uri" size="60" value="" class="form-text required">
+            </div>
+            <!--<div class="form-item" id="edit-request-query-wrapper">
+                <label for="request_query">Request query: </label>
+                <input type="text" maxlength="128" name="request_query" id="request_query" size="60" value="" class="form-text">
+                <div class="description">The parameters for your request. For example: <i>include_entities=true&amp;page=2</i>. Note these parameters will be sent on the querystring for GET requests, and in the request body for POST requests.</div>
+            </div>-->
+        </div>
+    </fieldset>
+    <input type="submit" name="op" id="op" value="Submit" class="form-submit">
+
+    <div id="msg"></div>
+    <code id="result" class="prettyprint"></code>
+    </div>
+    <script type="text/javascript" src="sha1.js"></script>
+    <script type="text/javascript" src="oauth.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+</body>
+</html>

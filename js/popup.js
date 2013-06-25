@@ -16,6 +16,7 @@ function newXMLHttpRequest() {
 }
 
 function makeRequest() {
+    $("#msg").hide();
     document.getElementById("result").innerHTML = "";
     document.getElementById("msg").innerHTML = "";
 
@@ -34,15 +35,24 @@ function makeRequest() {
     var authorizationHeader = OAuth.getAuthorizationHeader("", message.parameters);
     var requestToken = newXMLHttpRequest();
     requestToken.onreadystatechange = function receiveRequestToken() {
-        if (requestToken.readyState == 4 && requestToken.status == 200) {
-            document.getElementById("result").innerHTML = JSON.stringify(JSON.parse(requestToken.responseText), null, 4);
+        if (requestToken.readyState == 4) {
+            if (requestToken.status == 200) {
+                document.getElementById("result").innerHTML = JSON.stringify(JSON.parse(requestToken.responseText), null, 4);
 
-            chrome.storage.local.set({ 'consumerKey': accessor.consumerKey, 'consumerSecret': accessor.consumerSecret, 'token': accessor.token, 'tokenSecret': accessor.tokenSecret, 'method': message.method, 'action': message.action });
-        }
-        else if (requestToken.status != 200) {
-            document.getElementById("msg").innerHTML = (requestToken.status + " " + requestToken.statusText
-                  + "\n" + requestToken.getAllResponseHeaders()
-                  + "\n" + requestToken.responseText);
+                chrome.storage.local.set({ 'consumerKey': accessor.consumerKey, 'consumerSecret': accessor.consumerSecret, 'token': accessor.token, 'tokenSecret': accessor.tokenSecret, 'method': message.method, 'action': message.action });
+            }
+            else {
+                document.getElementById("msg").innerHTML = (requestToken.status + " " + requestToken.statusText + "\n" + requestToken.getAllResponseHeaders());
+                $("#msg").show();
+                if (requestToken.responseText && requestToken.responseText != " ") {
+                    try {
+                        var json = JSON.parse(requestToken.responseText);
+                        document.getElementById("result").innerHTML = JSON.stringify(json, null, 4);
+                    } catch (e) {
+                        document.getElementById("result").innerHTML = requestToken.responseText;
+                    }                    
+                }                
+            }
         }
     }
     requestToken.open(message.method, message.action, true);

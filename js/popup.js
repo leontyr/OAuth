@@ -84,6 +84,12 @@ document.addEventListener('DOMContentLoaded', function () {
             $("#collapseOne").collapse();
     });
 
+    $('.collapse').on('show', function () {
+        $(this).parent().find(".icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+    }).on('hide', function () {
+        $(this).parent().find(".icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+    });
+
     var link = document.getElementById('op');
     link.addEventListener('click', function () {
         makeRequest();

@@ -2,3 +2,6 @@ html {
     overflow-y:scroll
 }
 
+.icon-chevron-up,.icon-chevron-down {
+    margin-left:5px;
+}

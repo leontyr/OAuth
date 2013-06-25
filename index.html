@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Twitter API</title>
+    <title>OAuth Tester</title>
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
 </head>
@@ -40,7 +40,7 @@
                 <div class="accordion-heading"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Request settings</a></div>
                 <div id="collapseTwo" class="accordion-body collapse in">
                     <div class="accordion-inner">
-                        <div>
+                        <div class="controls">
                             <label>Request type: <span class="form-required" title="This field is required.">*</span></label>
                             <label class="radio inline" for="edit-request-type-0">
                                 <input type="radio" id="edit-request-type-0" name="request_type" value="get" checked="checked" />
@@ -73,8 +73,11 @@
         </div>
         <button type="submit" name="op" id="op" class="btn btn-primary">Submit</button>
         <hr />
-        <div id="msg"></div>
+        <div id="msg" class="alert alert-error hide"></div>
         <pre id="result"></pre>
+        <!--<div class="row-fluid">
+                            <textarea id="result" class="span12" rows="22"></textarea>
+                        </div>-->
     </div>
     <script type="text/javascript" src="js/sha1.js"></script>
     <script type="text/javascript" src="js/oauth.js"></script>

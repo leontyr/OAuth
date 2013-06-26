@@ -1,24 +1,5 @@
-function newXMLHttpRequest() {
-    try {
-        return new XMLHttpRequest();
-    } catch (e) {
-        try {
-            return new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e) {
-            try {
-                return new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e) {
-                alert("Sorry, your browser doesn't support AJAX.");
-                throw e;
-            }
-        }
-    }
-}
-
 function makeRequest() {
-    $("#msg").hide();
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("msg").innerHTML = "";
+    initialize();
 
     var accessor = {
         consumerKey: document.getElementById("consumer_key").value
@@ -28,12 +9,12 @@ function makeRequest() {
     };
     var message = {
         method: getRadioVal("request_type"), action: document.getElementById("request_uri").value
-      //, parameters: [["scope", "http://www.google.com/m8/feeds/"]]
+        //, parameters: [["scope", "http://www.google.com/m8/feeds/"]]
     };
     //var requestBody = OAuth.formEncode(message.parameters);
     OAuth.completeRequest(message, accessor);
     var authorizationHeader = OAuth.getAuthorizationHeader("", message.parameters);
-    var requestToken = newXMLHttpRequest();
+    var requestToken = new XMLHttpRequest();
     requestToken.onreadystatechange = function receiveRequestToken() {
         if (requestToken.readyState == 4) {
             if (requestToken.status == 200) {
@@ -50,14 +31,13 @@ function makeRequest() {
                         document.getElementById("result").innerHTML = JSON.stringify(json, null, 4);
                     } catch (e) {
                         document.getElementById("result").innerHTML = requestToken.responseText;
-                    }                    
-                }                
+                    }
+                }
             }
         }
     }
     requestToken.open(message.method, message.action, true);
     requestToken.setRequestHeader("Authorization", authorizationHeader);
-    //requestToken.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requestToken.send();
 }
 
@@ -70,6 +50,12 @@ function getRadioVal(radioName) {
     }
 
     return null;
+}
+
+function initialize() {
+    $("#msg").hide();
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("msg").innerHTML = "";
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -90,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
         $(this).parent().find(".icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
     });
 
-    var link = document.getElementById('op');
-    link.addEventListener('click', function () {
+    $('#target').submit(function () {
         makeRequest();
+        return false;
     });
 });

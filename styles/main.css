@@ -2,6 +2,14 @@ html {
     overflow-y:scroll
 }
 
+#main_container {
+    margin-top:10px
+}
+
+#form {
+    margin-bottom:5px
+}
+
 .icon-chevron-up,.icon-chevron-down {
-    margin-left:5px;
+    margin-left:5px
 }

@@ -13,3 +13,20 @@ html {
 .icon-chevron-up,.icon-chevron-down {
     margin-left:5px
 }
+
+#main_container label{
+font-weight: bold;
+}
+
+#main_container label.radio {
+font-weight: normal;
+}
+
+.form-required {
+    color: #F00;
+font-weight: bold;
+}
+
+ul.nav-tabs li.active a {
+font-weight: bold;
+}

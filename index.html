@@ -9,7 +9,6 @@
 <body>
     <div id="main_container" class="container-fluid">
         <form id="target">
-        <div id="form">
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">OAuth settings<i class="icon-chevron-up"></i></a>
@@ -71,15 +70,24 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <button type="submit" name="op" id="op" class="btn btn-primary">Submit</button>
-            </form>
-        <hr />
+            <button type="submit" name="op" id="op" class="btn btn-primary">Submit</button>
+        </form>
         <div id="msg" class="alert alert-error hide"></div>
-        <pre id="result"></pre>
-        <!--<div class="row-fluid">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#headers" data-toggle="tab">Headers</a></li>
+            <li><a href="#body" data-toggle="tab">Body</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="headers">
+                <pre id="headers_content"></pre>
+            </div>            
+            <div class="tab-pane" id="body">
+                <pre id="body_content"></pre>
+                <!--<div class="row-fluid">
                             <textarea id="result" class="span12" rows="22"></textarea>
                         </div>-->
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="js/sha1.js"></script>
     <script type="text/javascript" src="js/oauth.js"></script>

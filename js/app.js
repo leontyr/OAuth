@@ -15,11 +15,11 @@ function makeRequest() {
     //var requestBody = OAuth.formEncode(message.parameters);
     OAuth.completeRequest(message, accessor);
     var authorizationHeader = OAuth.getAuthorizationHeader('', message.parameters);
-    var requestToken = new XMLHttpRequest();
-    requestToken.onreadystatechange = function receiveRequestToken() {
-        if (requestToken.readyState == 4) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function receiveRequestToken() {
+        if (xhr.readyState == 4) {
             $('#op').button('reset');
-            if (requestToken.status == 200) {
+            if (xhr.status == 200) {
                 chrome.storage.local.set({
                     'consumerKey': accessor.consumerKey,
                     'consumerSecret': accessor.consumerSecret,
@@ -29,24 +29,24 @@ function makeRequest() {
                     'action': message.action
                 });
             } else {
-                document.getElementById('msg').innerHTML = requestToken.status + ' ' + requestToken.statusText;
+                document.getElementById('msg').innerText = xhr.status + ' ' + xhr.statusText;
                 $('#msg').show();
             }
 
-            document.getElementById('headers_content').innerHTML = requestToken.getAllResponseHeaders();
-            if (requestToken.responseText && requestToken.responseText != ' ') {
+            document.getElementById('headers_content').innerText = xhr.getAllResponseHeaders();
+            if (xhr.responseText && xhr.responseText != ' ') {
                 try {
-                    var json = JSON.parse(requestToken.responseText);
-                    document.getElementById('body_content').innerHTML = JSON.stringify(json, null, 4);
+                    var json = JSON.parse(xhr.responseText);
+                    document.getElementById('body_content').innerText = JSON.stringify(json, null, 4);
                 } catch (e) {
-                    document.getElementById('body_content').innerHTML = requestToken.responseText;
+                    document.getElementById('body_content').innerText = xhr.responseText;
                 }
             }
         }
     }
-    requestToken.open(message.method, message.action, true);
-    requestToken.setRequestHeader('Authorization', authorizationHeader);
-    requestToken.send();
+    xhr.open(message.method, message.action, true);
+    xhr.setRequestHeader('Authorization', authorizationHeader);
+    xhr.send();
 }
 
 function getRadioVal(radioName) {
@@ -62,9 +62,9 @@ function getRadioVal(radioName) {
 
 function initialize() {
     $('#msg').hide();
-    document.getElementById('headers_content').innerHTML = '';
-    document.getElementById('body_content').innerHTML = '';
-    document.getElementById('msg').innerHTML = '';
+    document.getElementById('headers_content').innerText = '';
+    document.getElementById('body_content').innerText = '';
+    document.getElementById('msg').innerText = '';
 }
 
 document.addEventListener('DOMContentLoaded', function () {

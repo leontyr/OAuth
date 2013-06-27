@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
   "name": "OAuth",
-  "version": "0.7",
+  "version": "0.8",
   "minimum_chrome_version": "23",
   "icons": {
     "128": "oauth.png"
   },
   "app": {
     "background": {
-      "scripts": ["main.js"]
+      "scripts": ["background.js"]
     }
   },
   "permissions": ["storage","https://*/"]

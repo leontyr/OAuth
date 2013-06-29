@@ -30,3 +30,7 @@ font-weight: bold;
 ul.nav-tabs li.active a {
 font-weight: bold;
 }
+
+.content{
+    -webkit-user-select: auto;
+}

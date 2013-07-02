@@ -9,7 +9,7 @@ function makeRequest() {
     };
     var message = {
         method: getRadioVal('request_type'),
-        action: document.getElementById('request_uri').value
+        action: document.getElementById('request_uri').value.trim()
         //, parameters: [['scope', 'http://www.google.com/m8/feeds/']]
     };
     //var requestBody = OAuth.formEncode(message.parameters);

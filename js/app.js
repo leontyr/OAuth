@@ -17,9 +17,9 @@ function makeRequest() {
     var authorizationHeader = OAuth.getAuthorizationHeader('', message.parameters);
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function receiveRequestToken() {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4) {
             $('#op').button('reset');
-            if (xhr.status == 200) {
+            if (xhr.status === 200) {
                 chrome.storage.local.set({
                     'consumerKey': accessor.consumerKey,
                     'consumerSecret': accessor.consumerSecret,
@@ -34,7 +34,7 @@ function makeRequest() {
             }
 
             document.getElementById('headers_content').innerText = xhr.getAllResponseHeaders();
-            if (xhr.responseText && xhr.responseText != ' ') {
+            if (xhr.responseText && xhr.responseText !== ' ') {
                 try {
                     var json = JSON.parse(xhr.responseText);
                     document.getElementById('body_content').innerText = JSON.stringify(json, null, 4);
@@ -43,7 +43,7 @@ function makeRequest() {
                 }
             }
         }
-    }
+    };
     xhr.open(message.method, message.action, true);
     xhr.setRequestHeader('Authorization', authorizationHeader);
     xhr.send();
@@ -69,13 +69,13 @@ function initialize() {
 
 document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get(function (items) {
-        if (items['consumerKey']) document.getElementById('consumer_key').value = items['consumerKey'];
-        if (items['consumerSecret']) document.getElementById('consumer_secret').value = items['consumerSecret'];
-        if (items['token']) document.getElementById('access_token').value = items['token'];
-        if (items['tokenSecret']) document.getElementById('access_token_secret').value = items['tokenSecret'];
-        if (items['action']) document.getElementById('request_uri').value = items['action'];
+        if (items.consumerKey) document.getElementById('consumer_key').value = items.consumerKey;
+        if (items.consumerSecret) document.getElementById('consumer_secret').value = items.consumerSecret;
+        if (items.token) document.getElementById('access_token').value = items.token;
+        if (items.tokenSecret) document.getElementById('access_token_secret').value = items.tokenSecret;
+        if (items.action) document.getElementById('request_uri').value = items.action;
 
-        if (items['consumerKey'] && items['consumerSecret'] && items['token'] && items['tokenSecret'] && items['action'])
+        if (items.consumerKey && items.consumerSecret && items.token && items.tokenSecret && items.action)
             $('#collapseOne').collapse();
     });
 
